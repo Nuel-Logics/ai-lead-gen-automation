@@ -1,0 +1,105 @@
+{
+  "name": "Lead gen",
+  "nodes": [
+    {
+      "parameters": {
+        "fromEmail": "emmanuelmartin2026@gmail.com",
+        "toEmail": "emmsme11@gmail.com",
+        "subject": "New Lead Collected",
+        "emailFormat": "text",
+        "text": "=Hello Boss, we have a new lead collected just now.\nNAME:{{ $json.Name }}\nEMAIL: {{ $json.Email }}\nPhone N0: {{ $json['Phone number'] }}\nCOMPANY:{{ $json.Company }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        256,
+        -80
+      ],
+      "id": "717da1a9-7129-4127-bfa2-09168c3fb757",
+      "name": "Send an Email",
+      "webhookId": "36aac9db-7dfc-4aae-9a46-d3e8ede9c5b4",
+      "credentials": {
+        "smtp": {
+          "id": "Y7PNLsOPN98BjZiT",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "emmanuelmartin2026@gmail.com",
+        "toEmail": "={{ $json.Email }}",
+        "subject": "=Dear {{ $json.Name }}",
+        "emailFormat": "text",
+        "text": "=Thank you for subscribing to our Newsletter, {{ $json.Name }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        256,
+        144
+      ],
+      "id": "af98d24f-11a1-4650-8430-b72ab4634048",
+      "name": "Send an Email1",
+      "webhookId": "cbf23551-0a29-45a3-b8ee-af58539b2b06",
+      "credentials": {
+        "smtp": {
+          "id": "Y7PNLsOPN98BjZiT",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "15b2923d-f7d2-44dc-bcbe-3154799d4ea2",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -16,
+        32
+      ],
+      "id": "12560973-39c7-48bc-a713-b0298e708a46",
+      "name": "Webhook",
+      "webhookId": "15b2923d-f7d2-44dc-bcbe-3154799d4ea2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send an Email",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send an Email1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "7712c3fe-f7a3-4764-a8b3-4d1adb9888ec",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "46f985abddbc3c79c20796931a714fb174fadaeed79784ea3c02ce700fb354b3"
+  },
+  "id": "IRl6emayat6GcADg",
+  "tags": []
+}
